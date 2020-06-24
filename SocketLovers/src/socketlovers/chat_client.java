@@ -103,15 +103,19 @@ public class chat_client extends javax.swing.JFrame {
 
     private void msg_sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msg_sendActionPerformed
         // TODO add your handling code here:
-        try{
-        String msg = "";
-        msg=msg_text.getText();
-        dout.writeUTF(msg);
-        msg_text.setText("");
+
+
+        try {
+            String msg = "";
+            msg = msg_text.getText();
+            dout.writeUTF(msg);
+            msg_text.setText("");
+            
+        } catch (Exception e) {
+
         }
-        catch(Exception e){
-        
-        }
+
+
     }//GEN-LAST:event_msg_sendActionPerformed
 
     /**
@@ -150,8 +154,10 @@ public class chat_client extends javax.swing.JFrame {
 
         try {
             String msgin = "";
-            s = new Socket("127.0.0.1",1201);// ip address of local host because server is running on the same pc
-            
+
+
+
+
             dis = new DataInputStream(s.getInputStream());
             dout = new DataOutputStream(s.getOutputStream());
 
