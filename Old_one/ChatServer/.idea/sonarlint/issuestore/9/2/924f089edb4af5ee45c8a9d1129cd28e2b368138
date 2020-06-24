@@ -1,18 +1,0 @@
-
-Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(’½åËüÿÿÿÿ8¤ìªå¶,
-Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(Ë‡ÒÑıÿÿÿÿ8³Ô“æ¶,
-Csquid:S2189""Add an end condition to this loop.(˜ïˆÿÿÿÿÿ8ÌŸå¶,
-Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(¬¹ïäùÿÿÿÿ8ïÄ²å¶,
-osquid:S1450"SRemove the "name" field and declare it as a local variable in the relevant methods.(Ë¥¼8±ŸÂå¶,
-T
-squid:S106"9Replace this use of System.out or System.err by a logger.(ãñŠ8¯‘’æ¶,
-{squid:S1149"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(ÔÕÔ²8‡‰Íå¶,
-Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(“×·ôşÿÿÿÿ8¨ùìå¶,
-_squid:S2259"DA "NullPointerException" could be thrown; "server" is nullable here.(·ë/8Û›å¶,
-1squid:S1220""Move this file to a named package.
-T
-squid:S106"9Replace this use of System.out or System.err by a logger.(­ş°8•æ©å¶,
