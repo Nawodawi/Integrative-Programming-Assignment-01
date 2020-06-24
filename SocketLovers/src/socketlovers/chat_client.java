@@ -9,6 +9,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import static socketlovers.chat_server.dout;
 
 /**
  *
@@ -103,6 +104,7 @@ public class chat_client extends javax.swing.JFrame {
     private void msg_sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msg_sendActionPerformed
         // TODO add your handling code here:
 
+
         try {
             String msg = "";
             msg = msg_text.getText();
@@ -112,6 +114,7 @@ public class chat_client extends javax.swing.JFrame {
         } catch (Exception e) {
 
         }
+
 
     }//GEN-LAST:event_msg_sendActionPerformed
 
@@ -152,7 +155,9 @@ public class chat_client extends javax.swing.JFrame {
         try {
             String msgin = "";
 
-            s = new Socket("127.0.0.1", 1201); //local host ip because we use this in same computer
+
+
+
             dis = new DataInputStream(s.getInputStream());
             dout = new DataOutputStream(s.getOutputStream());
 
