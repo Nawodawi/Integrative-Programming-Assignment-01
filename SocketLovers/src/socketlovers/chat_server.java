@@ -24,7 +24,7 @@ public class chat_server extends javax.swing.JFrame {
     static Socket s;
     static DataInputStream dis;
     static DataOutputStream dout;
-
+    static encryption Encryption = new encryption();
     /**
      * Creates new form chat_server
      */
@@ -100,7 +100,7 @@ public class chat_server extends javax.swing.JFrame {
         try {
             String msg = "";
             msg = msg_text.getText();
-            dout.writeUTF(msg);
+            dout.writeUTF(Encryption.encrypt(msg));
             msg_text.setText("");
         } catch (Exception e) {
 
@@ -152,7 +152,7 @@ public class chat_server extends javax.swing.JFrame {
 
             while (!msgin.equals("exit")) {
                 msgin = dis.readUTF();
-                msg_area.setText(msg_area.getText() + "\n Client: " + msgin);
+                msg_area.setText(msg_area.getText() + "\n Client: " + Encryption.decrypt(msgin));
 
             }
 
