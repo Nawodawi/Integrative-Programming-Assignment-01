@@ -9,6 +9,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import static socketlovers.chat_server.dout;
 
 /**
  *
@@ -39,7 +40,7 @@ public class chat_client extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         msg_area = new javax.swing.JTextArea();
-        text_area = new javax.swing.JTextField();
+        msg_text = new javax.swing.JTextField();
         msg_send = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -49,13 +50,18 @@ public class chat_client extends javax.swing.JFrame {
         msg_area.setRows(5);
         jScrollPane1.setViewportView(msg_area);
 
-        text_area.addActionListener(new java.awt.event.ActionListener() {
+        msg_text.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                text_areaActionPerformed(evt);
+                msg_textActionPerformed(evt);
             }
         });
 
         msg_send.setText("Send");
+        msg_send.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                msg_sendActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Client");
 
@@ -68,7 +74,7 @@ public class chat_client extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(text_area)
+                        .addComponent(msg_text)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(msg_send))
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -83,7 +89,7 @@ public class chat_client extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(text_area)
+                    .addComponent(msg_text)
                     .addComponent(msg_send, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -91,9 +97,22 @@ public class chat_client extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void text_areaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_areaActionPerformed
+    private void msg_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msg_textActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_text_areaActionPerformed
+    }//GEN-LAST:event_msg_textActionPerformed
+
+    private void msg_sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msg_sendActionPerformed
+        // TODO add your handling code here:
+        try{
+        String msg = "";
+        msg=msg_text.getText();
+        dout.writeUTF(msg);
+        msg_text.setText("");
+        }
+        catch(Exception e){
+        
+        }
+    }//GEN-LAST:event_msg_sendActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,14 +150,14 @@ public class chat_client extends javax.swing.JFrame {
 
         try {
             String msgin = "";
-            ss = new ServerSocket(1201);
-            s = ss.accept();
+            s = new Socket("127.0.0.1",1201);// ip address of local host because server is running on the same pc
+            
             dis = new DataInputStream(s.getInputStream());
             dout = new DataOutputStream(s.getOutputStream());
 
             while (!msgin.equals("exit")) {
                 msgin = dis.readUTF();
-                msg_area.setText(msg_area.getText() + "\n Client: " + msgin);
+                msg_area.setText(msg_area.getText() + "\n Server: " + msgin);
 
             }
 
@@ -152,6 +171,6 @@ public class chat_client extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private static javax.swing.JTextArea msg_area;
     private javax.swing.JButton msg_send;
-    private javax.swing.JTextField text_area;
+    private javax.swing.JTextField msg_text;
     // End of variables declaration//GEN-END:variables
 }
