@@ -9,6 +9,10 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import static socketlovers.chat_client.dis;
+import static socketlovers.chat_client.dout;
+import static socketlovers.chat_client.s;
+import static socketlovers.chat_client.ss;
 
 /**
  *
@@ -16,12 +20,11 @@ import java.net.Socket;
  */
 public class chat_server extends javax.swing.JFrame {
 
-    
-    
     static ServerSocket ss;
     static Socket s;
     static DataInputStream dis;
     static DataOutputStream dout;
+
     /**
      * Creates new form chat_server
      */
@@ -93,17 +96,16 @@ public class chat_server extends javax.swing.JFrame {
 
     private void msg_sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msg_sendActionPerformed
         // TODO add your handling code here:
-        
-        try{
-        String msg = "";
-        msg=msg_text.getText();
-        dout.writeUTF(msg);
-        msg_text.setText("");
+
+        try {
+            String msg = "";
+            msg = msg_text.getText();
+            dout.writeUTF(msg);
+            msg_text.setText("");
+        } catch (Exception e) {
+
         }
-        catch(Exception e){
-        
-        }
-        
+
     }//GEN-LAST:event_msg_sendActionPerformed
 
     /**
@@ -139,6 +141,25 @@ public class chat_server extends javax.swing.JFrame {
                 new chat_server().setVisible(true);
             }
         });
+        
+        try {
+            String msgin = "";
+
+            ss = new ServerSocket(1201);
+            s = ss.accept();
+            dis = new DataInputStream(s.getInputStream());
+            dout = new DataOutputStream(s.getOutputStream());
+
+            while (!msgin.equals("exit")) {
+                msgin = dis.readUTF();
+                msg_area.setText(msg_area.getText() + "\n Client: " + msgin);
+
+            }
+
+        } catch (Exception e) {
+
+        }
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
